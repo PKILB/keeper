@@ -22,6 +22,15 @@ namespace keeper.Repositories
             return vaultKeepData;
         }
 
+        internal void deleteVaultKeep(int id)
+        {
+            string sql = @"
+            DELETE FROM vaultKeeps
+            WHERE id = @id
+            ";
+            _db.Execute(sql, new { id });
+        }
+
         internal List<KeptKeep> GetKeepsByVault(int vaultId)
         {
             string sql = @"
@@ -41,6 +50,18 @@ namespace keeper.Repositories
                 return keptKeep;
             }, new { vaultId }).ToList();
             return keptKeeps;
+        }
+
+        internal VaultKeep GetOne(int id)
+        {
+            string sql = @"
+            SELECT
+            *
+            FROM vaultKeeps
+            WHERE id = @id
+            ";
+            VaultKeep vaultKeep = _db.Query<VaultKeep>(sql, new { id }).FirstOrDefault();
+            return vaultKeep;
         }
     }
 }
