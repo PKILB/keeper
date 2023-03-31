@@ -41,6 +41,7 @@ namespace keeper.Repositories
             return vault;
         }
 
+
         internal int UpdateVault(Vault update)
         {
             string sql = @"
@@ -56,5 +57,15 @@ namespace keeper.Repositories
             int rows = _db.Execute(sql, update);
             return rows;
         }
+
+        internal bool removeVault(int id)
+        {
+            string sql = @"
+            DELETE FROM vaults WHERE id = @id;
+            ";
+            int rows = _db.Execute(sql, new { id });
+            return rows == 1;
+        }
     }
+    
 }
