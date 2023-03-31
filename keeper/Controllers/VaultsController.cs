@@ -6,12 +6,31 @@ namespace keeper.Controllers
     {
         private readonly VaultsService _vaultsService;
         private readonly Auth0Provider _auth;
+        private readonly VaultKeepsService _vaultKeepsService;
+        // private readonly KeptKeep _keptKeep;
 
-        public VaultsController(VaultsService vaultsService, Auth0Provider auth)
+        public VaultsController(VaultsService vaultsService, Auth0Provider auth, VaultKeepsService vaultKeepsService)
         {
             _vaultsService = vaultsService;
             _auth = auth;
+            _vaultKeepsService = vaultKeepsService;
         }
+
+        [HttpGet("{id}/keeps")]
+    
+    public async Task<ActionResult<List<KeptKeep>>> GetKeepsByVault(int id)
+    {
+        try
+        {
+            Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+            List<KeptKeep> keptKeeps = _vaultKeepsService.GetKeepsByVault(id, userInfo?.Id);
+            return Ok(keptKeeps);
+        }
+        catch (System.Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 
     [HttpPost]
     [Authorize]
