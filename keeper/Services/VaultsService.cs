@@ -22,5 +22,10 @@ namespace keeper.Services
             if (vault.CreatorId != userId && vault.isPrivate == true) throw new Exception("That is my vault, you are not allowed to see it.");
             return vault;
         }
+
+        internal Vault UpdateVault(int id, Vault updateData, Account userInfo)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
