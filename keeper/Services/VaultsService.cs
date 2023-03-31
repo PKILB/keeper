@@ -31,6 +31,7 @@ namespace keeper.Services
             original.Name = updateData.Name != null ? updateData.Name : original.Name;
             original.Description = updateData.Description != null ? updateData.Description : original.Description;
             original.Img = updateData.Img != null ? updateData.Img : original.Img;
+            original.isPrivate = updateData.isPrivate != null ? updateData.isPrivate : original.isPrivate;
             int rowsAffected = _repo.UpdateVault(original);
             if (rowsAffected == 0) throw new Exception($"Could not modify {updateData.Name} @ id {updateData.Id} for some reason.");
             if (rowsAffected > 1) throw new Exception($"Something went wrong, you made at least {rowsAffected} of vaults into {updateData.Name}, check out the db.");
