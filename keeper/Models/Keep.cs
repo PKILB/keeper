@@ -9,6 +9,6 @@ namespace keeper.Models
         public string Img { get; set; }
         public int Views { get; set; }
         public Profile Creator { get; set; }
-        public int KeptId { get; set; }
+        public int Kept { get; set; }
     }
 }
