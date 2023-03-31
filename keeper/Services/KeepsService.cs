@@ -14,5 +14,10 @@ namespace keeper.Services
             Keep keep = _repo.CreateKeep(keepData);
             return keep;
         }
+
+        internal List<Keep> GetAllKeeps(string id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
