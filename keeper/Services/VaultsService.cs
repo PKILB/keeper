@@ -23,6 +23,7 @@ namespace keeper.Services
             return vault;
         }
 
+
         internal Vault UpdateVault(int id, Vault updateData, Account userInfo)
         {
             Vault original = this.GetOneVault(id, userInfo.Id);
@@ -37,6 +38,14 @@ namespace keeper.Services
             if (rowsAffected > 1) throw new Exception($"Something went wrong, you made at least {rowsAffected} of vaults into {updateData.Name}, check out the db.");
 
             return original;
+        }
+
+        internal string RemoveVault(int id, Account userInfo)
+        {
+            Vault vault = this.GetOneVault(id, userInfo.Id);
+            bool result = _repo.removeVault(id);
+            if (vault.CreatorId != userInfo.Id) throw new Exception("You don't own this vault!!");
+            return $"You have successfully deleted the {vault.Name} vault!";
         }
     }
 }
