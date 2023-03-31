@@ -15,9 +15,11 @@ namespace keeper.Services
             return keep;
         }
 
-        internal List<Keep> GetAllKeeps(string id)
+        internal List<Keep> GetAllKeeps(string userId)
         {
-            throw new NotImplementedException();
+            List<Keep> allKeeps = _repo.GetAllKeeps();
+            List<Keep> filteredKeeps = allKeeps.FindAll(k => k.CreatorId == userId);
+            return filteredKeeps;
         }
     }
 }
