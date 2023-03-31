@@ -14,5 +14,13 @@ namespace keeper.Services
             Vault vault = _repo.CreateVault(vaultData);
             return vault;
         }
+
+        internal Vault GetOneVault(int id, string userId)
+        {
+            Vault vault = _repo.GetOneVault(id);
+            if (vault == null) throw new Exception($"no vault at that id; {id}");
+            if (vault.CreatorId != userId && vault.isPrivate == true) throw new Exception("That is my vault, you are not allowed to see it.");
+            return vault;
+        }
     }
 }

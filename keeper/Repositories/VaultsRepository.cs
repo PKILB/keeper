@@ -22,5 +22,23 @@ namespace keeper.Repositories
             vaultData.Id = id;
             return vaultData;
         }
+
+        internal Vault GetOneVault(int id)
+        {
+            string sql = @"
+            SELECT
+            vault.*,
+            acct.*
+            FROM vaults vault
+            JOIN accounts acct ON vault.creatorId = acct.id
+            WHERE vault.id = @id;
+            ";
+            Vault vault = _db.Query<Vault, Profile, Vault>(sql, (vault, prof) => 
+            {
+                vault.Creator = prof;
+                return vault;
+            }, new { id }).FirstOrDefault();
+            return vault;
+        }
     }
 }
