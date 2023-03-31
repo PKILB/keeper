@@ -42,5 +42,43 @@ namespace keeper.Repositories
             }).ToList();
             return keeps;
         }
+
+        internal Keep GetOneKeep(int id)
+        {
+            string sql = @"
+            SELECT
+            keep.*,
+            COUNT(vk.id) AS kept,
+            creator.*
+            FROM keeps keep
+            LEFT JOIN vaultKeeps vk ON vk.keepId = keep.id
+            JOIN accounts creator ON keep.creatorId = creator.id
+            WHERE keep.id = @id
+            GROUP BY keep.id
+            ";
+            Keep keep = _db.Query<Keep, Profile, Keep>(sql, (keep, creator) => 
+            {
+                keep.Creator = creator;
+                return keep;
+            }, new { id }).FirstOrDefault();
+            return keep;
+        }
+
+        internal int UpdateKeep(Keep updateData)
+        {
+            string sql = @"
+            UPDATE keeps
+            SET
+
+            name = @name,
+            description = @description,
+            img = @img,
+            views = @views
+
+            WHERE id = @id;
+            ";
+            int rows = _db.Execute(sql, updateData);
+            return rows;
+        }
     }
 }
