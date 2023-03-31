@@ -25,7 +25,17 @@ namespace keeper.Services
 
         internal Vault UpdateVault(int id, Vault updateData, Account userInfo)
         {
-            throw new NotImplementedException();
+            Vault original = this.GetOneVault(id, userInfo.Id);
+            if (original.CreatorId != userInfo.Id) throw new Exception("that is not your vault");
+
+            original.Name = updateData.Name != null ? updateData.Name : original.Name;
+            original.Description = updateData.Description != null ? updateData.Description : original.Description;
+            original.Img = updateData.Img != null ? updateData.Img : original.Img;
+            int rowsAffected = _repo.UpdateVault(original);
+            if (rowsAffected == 0) throw new Exception($"Could not modify {updateData.Name} @ id {updateData.Id} for some reason.");
+            if (rowsAffected > 1) throw new Exception($"Something went wrong, you made at least {rowsAffected} of vaults into {updateData.Name}, check out the db.");
+
+            return original;
         }
     }
 }
