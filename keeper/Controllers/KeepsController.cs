@@ -79,5 +79,22 @@ namespace keeper.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpDelete("{id}")]
+        [Authorize]
+
+        public async Task<ActionResult<string>> DeleteKeep(int id)
+        {
+            try
+            {
+                Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+                String message = _keepsService.DeleteKeep(id, userInfo);
+                return Ok(message);
+            }
+            catch (System.Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

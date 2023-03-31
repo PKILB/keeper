@@ -15,6 +15,7 @@ namespace keeper.Services
             return keep;
         }
 
+
         internal List<Keep> GetAllKeeps(string userId)
         {
             List<Keep> allKeeps = _repo.GetAllKeeps();
@@ -38,6 +39,14 @@ namespace keeper.Services
 
             _repo.UpdateKeep(orginal);
             return orginal;
+        }
+
+        internal string DeleteKeep(int id, Account userInfo)
+        {
+            Keep keep = this.GetOneKeep(id, userInfo.Id);
+            bool result = _repo.deleteKeep(id);
+            if (keep.CreatorId != userInfo.Id) throw new Exception("You don't own this keep!!");
+            return $"You have successfully deleted the {keep.Name} keep!";
         }
     }
 }

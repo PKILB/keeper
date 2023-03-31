@@ -23,6 +23,7 @@ namespace keeper.Repositories
             return keepData;
         }
 
+
         internal List<Keep> GetAllKeeps()
         {
             string sql = @"
@@ -79,6 +80,15 @@ namespace keeper.Repositories
             ";
             int rows = _db.Execute(sql, updateData);
             return rows;
+        }
+
+        internal bool deleteKeep(int id)
+        {
+            string sql = @"
+            DELETE FROM keeps WHERE id = @id;
+            ";
+            int rows = _db.Execute(sql, new { id });
+            return rows == 1;
         }
     }
 }
