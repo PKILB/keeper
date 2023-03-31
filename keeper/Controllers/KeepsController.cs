@@ -45,5 +45,21 @@ namespace keeper.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpGet("{id}")]
+        
+        public async Task<ActionResult<Keep>> GetOneKeep(int id)
+        {
+            try
+            {
+                Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+                Keep keep = _keepsService.GetOneKeep(id, userInfo?.Id);
+                return Ok(keep);
+            }
+            catch (System.Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }
