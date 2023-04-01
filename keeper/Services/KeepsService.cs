@@ -20,9 +20,9 @@ namespace keeper.Services
 
         internal List<Keep> GetAllKeeps(string userId)
         {
-            List<Keep> allKeeps = _repo.GetAllKeeps();
-            List<Keep> filteredKeeps = allKeeps.FindAll(k => k.CreatorId == userId);
-            return filteredKeeps;
+            List<Keep> keeps = _repo.GetAllKeeps();
+            // List<Keep> filteredKeeps = allKeeps.FindAll(k => k.CreatorId == userId);
+            return keeps;
         }
 
         internal Keep GetOneKeep(int id, string userId)
@@ -32,9 +32,10 @@ namespace keeper.Services
             return keep;
         }
 
-        internal Keep UpdateKeep(Keep updateData)
+        internal Keep UpdateKeep(Keep updateData, Account userInfo)
         {
             Keep orginal = this.GetOneKeep(updateData.Id, updateData.CreatorId);
+            if(orginal.CreatorId != userInfo.Id) throw new Exception("That is not your keep!");
             orginal.Name = updateData.Name == null ? orginal.Name : updateData.Name;
             orginal.Description = updateData.Description != null ? updateData.Description : orginal.Description;
             orginal.Img = updateData.Img != null ? updateData.Img : orginal.Img;
@@ -46,8 +47,8 @@ namespace keeper.Services
         internal string DeleteKeep(int id, Account userInfo)
         {
             Keep keep = this.GetOneKeep(id, userInfo.Id);
-            bool result = _repo.deleteKeep(id);
             if (keep.CreatorId != userInfo.Id) throw new Exception("You don't own this keep!!");
+            bool result = _repo.deleteKeep(id);
             return $"You have successfully deleted the {keep.Name} keep!";
         }
 

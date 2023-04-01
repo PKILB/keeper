@@ -10,9 +10,10 @@ namespace keeper.Services
             _vaultsService = vaultsService;
         }
 
-        internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData)
+        internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData, Account userInfo)
         {
             VaultKeep vaultKeep = _repo.CreateVaultKeep(vaultKeepData);
+            if (vaultKeep.CreatorId != userInfo.Id) throw new Exception("You cannot do that");
             return vaultKeep;
         }
 
@@ -28,6 +29,7 @@ namespace keeper.Services
         internal List<KeptKeep> GetKeepsByVault(int vaultId, string userId)
         {
             Vault vault = _vaultsService.GetOneVault(vaultId, userId);
+            if (vault.CreatorId != userId && vault.isPrivate == true) throw new Exception($"You do not have access to this vault.");
             List<KeptKeep> keptKeeps = _repo.GetKeepsByVault(vaultId);
             return keptKeeps;
         }

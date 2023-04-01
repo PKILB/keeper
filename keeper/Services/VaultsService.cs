@@ -56,5 +56,11 @@ namespace keeper.Services
             List<Vault> vaults = _repo.GetProfileVaults(profileId);
             return vaults;
         }
+
+        internal List<Vault> GetMyVaults(string accountId)
+        {
+            List<Vault> vaults = _repo.GetMyVaults(accountId);
+            return vaults;
+        }
     }
 }

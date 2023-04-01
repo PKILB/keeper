@@ -67,7 +67,7 @@ namespace keeper.Controllers
     }
 
     [HttpPut("{id}")]
-    [Authorize]
+    // [Authorize]
     public async Task<ActionResult<Vault>> UpdateVault(int id, [FromBody] Vault updateData)
     {
         try
