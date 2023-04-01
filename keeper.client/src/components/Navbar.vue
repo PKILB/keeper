@@ -1,28 +1,24 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-grey px-3 border-style">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
+      <div class="d-flex flex-column align-items-center ps-3">
+        <button class="btn bg-info text-dark fw-bold">Home</button>
       </div>
     </router-link>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarText"
-      aria-controls="navbarText"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
-        <li>
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-            About
-          </router-link>
-        </li>
+        <div>
+          Create
+        </div>
+        <!-- <div class="text-center">
+          the
+          keepr
+          co.
+        </div> -->
       </ul>
       <!-- LOGIN COMPONENT HERE -->
       <Login />
@@ -41,6 +37,10 @@ export default {
 </script>
 
 <style scoped>
+.border-style {
+  border-bottom: 4px solid rgba(0, 0, 0, 0.192);
+}
+
 a:hover {
   text-decoration: none;
 }
@@ -60,5 +60,4 @@ a:hover {
     height: 64px;
   }
 }
-
 </style>
