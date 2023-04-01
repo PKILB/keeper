@@ -3,10 +3,11 @@ namespace keeper.Services
     public class KeepsService
     {
         private readonly KeepsRepository _repo;
-        // private readonly VaultsService _vaultsService;
-        public KeepsService(KeepsRepository repo)
+        private readonly ProfilesService _profilesService;
+        public KeepsService(KeepsRepository repo, ProfilesService profilesService)
         {
             _repo = repo;
+            _profilesService = profilesService;
             // _vaultsService = vaultsService;
         }
 
@@ -48,6 +49,12 @@ namespace keeper.Services
             bool result = _repo.deleteKeep(id);
             if (keep.CreatorId != userInfo.Id) throw new Exception("You don't own this keep!!");
             return $"You have successfully deleted the {keep.Name} keep!";
+        }
+
+        internal List<Keep> GetProfileKeeps(string profileId)
+        {   Profile profile = _profilesService.GetProfile(profileId);
+            List<Keep> keeps = _repo.GetProfileKeeps(profileId);
+            return keeps;
         }
     }
 }

@@ -3,10 +3,12 @@ namespace keeper.Services
     public class VaultsService
     {
         private readonly VaultsRepository _repo;
+        private readonly ProfilesService _profilesService;
 
-        public VaultsService(VaultsRepository repo)
+        public VaultsService(VaultsRepository repo, ProfilesService profilesService)
         {
             _repo = repo;
+            _profilesService = profilesService;
         }
 
         internal Vault CreateVault(Vault vaultData)
@@ -46,6 +48,13 @@ namespace keeper.Services
             bool result = _repo.removeVault(id);
             if (vault.CreatorId != userInfo.Id) throw new Exception("You don't own this vault!!");
             return $"You have successfully deleted the {vault.Name} vault!";
+        }
+
+        internal List<Vault> GetProfileVaults(string profileId)
+        {
+            Profile profile = _profilesService.GetProfile(profileId);
+            List<Vault> vaults = _repo.GetProfileVaults(profileId);
+            return vaults;
         }
     }
 }

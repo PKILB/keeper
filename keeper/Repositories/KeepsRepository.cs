@@ -90,5 +90,23 @@ namespace keeper.Repositories
             int rows = _db.Execute(sql, new { id });
             return rows == 1;
         }
+
+        internal List<Keep> GetProfileKeeps(string profileId)
+        {
+            string sql = @"
+            SELECT
+            keep.*,
+            creator.*
+            FROM keeps keep
+            JOIN accounts creator ON keep.creatorId = creator.id
+            WHERE keep.creatorId = @profileId
+            ";
+            List<Keep> keeps = _db.Query<Keep, Profile, Keep>(sql, (keep, creator) => 
+            {
+                keep.Creator = creator;
+                return keep;
+            }, new { profileId }).ToList();
+            return keeps;
+        }
     }
 }
