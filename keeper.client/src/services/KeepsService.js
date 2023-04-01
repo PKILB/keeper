@@ -12,6 +12,11 @@ class KeepsService {
         const keeps = res.data.map(k => new Keep(k))
         AppState.keeps = keeps
     }
+
+    setActiveKeep(keep)
+    {
+        AppState.keep = keep
+    }
 }
 
 export const keepsService = new KeepsService()

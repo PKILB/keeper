@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid py-2 bg-grey">
     <div class="row">
-      <div class="col-10 m-auto">
+      <div class="col-md-10 m-auto">
         <section class="bricks">
           <div v-for="k in keeps" class="pt-2">
             <KeepCard :keep="k" />
@@ -10,6 +10,10 @@
       </div>
     </div>
   </div>
+
+  <KeepModalComponent id="keepDetails">
+    <KeepDetails />
+  </KeepModalComponent>
 </template>
 
 <script>
@@ -19,6 +23,7 @@ import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { keepsService } from '../services/KeepsService.js';
 import KeepCard from '../components/KeepCard.vue';
+// import KeepDetails from '../components/KeepDetails.vue';
 
 export default {
   setup() {
