@@ -17,6 +17,12 @@ class KeepsService {
     {
         AppState.keep = keep
     }
+
+    async createKeep(formData) {
+        const res = await api.post('api/keeps', formData)
+        logger.log('creating keep', res.data)
+        AppState.keeps.push(res.data)
+    }
 }
 
 export const keepsService = new KeepsService()

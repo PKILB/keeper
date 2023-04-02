@@ -11,8 +11,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
-        <div>
-          Create
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Create
+          </button>
+          <ul class="dropdown-menu">
+            <li @click="createKeep" data-bs-toggle="modal" data-bs-target="#createKeepModal" class="dropdown-item">new
+              keep</li>
+          </ul>
         </div>
         <!-- <div class="text-center">
           the
