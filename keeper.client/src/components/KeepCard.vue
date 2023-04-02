@@ -1,19 +1,18 @@
 <template>
-    <div @click="setActiveKeep()" class="container selectable" data-bs-toggle="modal" data-bs-target="#keepDetails">
+    <div @click="setActiveKeep()" class="container" data-bs-toggle="modal" data-bs-target="#keepDetails">
         <div class="card bg-white rounded elevation-1">
             <img class="img-fluid rounded-top" :src="keep.img" alt="">
-            <div v-if="account.id == keep?.creator.id"
-                class="card-img-overlay row d-flex align-content-start justify-content-end">
-                <div class="col-2 delete-style">
-                    <button @click="deleteKeep(keep.id)">
-                        <i class=" selectable fs-3 text-danger mdi mdi-alpha-x-circle"></i>
-                    </button>
+            <div class="card-img-overlay d-flex row align-content-between">
+                <div class="col-12 d-flex justify-content-end" v-if="account.id == keep?.creator.id">
+                    <i @click="deleteKeep(keep.id)" class=" selectable fs-3 text-danger mdi mdi-alpha-x-circle"></i>
                 </div>
-            </div>
-            <div class="card-img-overlay row d-flex align-content-end">
-                <h4 class="p-2 text-light text-style col-6 mt-5">{{ keep?.name }}</h4>
-                <div class=" p-3 col-6 d-flex justify-content-end mt-5 ">
-                    <img class="profile-img" :src="keep?.creator?.picture" alt="" :title="keep?.creator?.name">
+                <div class="col-12 d-flex justify-content-between">
+                    <h4 class="p-2 text-light text-style mt-5">{{ keep?.name }}</h4>
+                    <div class=" p-3 justify-content-end ">
+                        <router-link class="selectable" :to="{ name: 'Profile', params: { profileId: keep.creatorId } }">
+                            <img class="profile-img" :src="keep?.creator?.picture" alt="" :title="keep?.creator?.name">
+                        </router-link>
+                    </div>
                 </div>
             </div>
         </div>
@@ -68,8 +67,8 @@ export default {
     text-shadow: 0 0 4px rgb(0, 0, 0);
 }
 
-.delete-style {
-    transform: translateY(-5vh);
-    transform: translateX(-2vh);
-}
+// .delete-style {
+//     transform: translateY(-5vh);
+//     transform: translateX(-2vh);
+// }
 </style>
