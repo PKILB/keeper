@@ -22,7 +22,7 @@
             <div class="col-9 m-auto">
                 <div class="row">
                     <h2>Vaults</h2>
-                    <div v-for="v in vaults" class="col-3">
+                    <div v-for="v in vaults" class="col-4">
                         <VaultCard class="" :vault="v" />
                     </div>
                 </div>

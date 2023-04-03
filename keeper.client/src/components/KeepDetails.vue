@@ -14,7 +14,7 @@
                     <h2 class="d-flex justify-content-center align-items-center">{{ keep.name }}</h2>
                     <p class="d-flex justify-content-center align-content-center px-5">{{ keep.description }}</p>
                 </div>
-                <div class="row d-flex align-content-end">
+                <div class="row">
                     <div class="col">
                         <h4 class="">Vaults</h4>
                     </div>
