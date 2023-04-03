@@ -7,7 +7,7 @@
             <div class="col-md-6">
                 <div class="row">
                     <div class="d-flex justify-content-center">
-                        this is where views and kepts will go
+                        {{ keep.views }} and kepts will go
                     </div>
                 </div>
                 <div class="row">

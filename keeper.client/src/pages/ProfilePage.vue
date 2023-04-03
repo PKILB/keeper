@@ -20,15 +20,33 @@
         </div>
         <div class="row mb-2">
             <div class="col-9 m-auto">
-                <h2>Vaults</h2>
+                <div class="row">
+                    <h2>Vaults</h2>
+                    <div v-for="v in vaults" class="col-3">
+                        <VaultCard class="" :vault="v" />
+                    </div>
+                </div>
             </div>
+            <!-- <div class="row d-flex">
+                </div> -->
         </div>
         <div class="row">
             <div class="col-9 m-auto">
-                <h2>Keeps</h2>
+                <div class="row">
+                    <h2>Keeps</h2>
+                    <section class="bricks">
+                        <div v-for="k in keeps" class="">
+                            <KeepCard :keep="k" />
+                        </div>
+                    </section>
+                </div>
             </div>
         </div>
     </div>
+
+    <KeepModalComponent id="keepDetails">
+        <KeepDetails />
+    </KeepModalComponent>
 </template>
 
 
@@ -40,39 +58,56 @@ import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { profilesService } from '../services/ProfilesService.js'
 import { vaultsService } from '../services/VaultsService.js'
+import VaultCard from '../components/VaultCard.vue';
+import { keepsService } from '../services/KeepsService.js';
+import KeepCard from '../components/KeepCard.vue';
 
 export default {
     setup() {
         const route = useRoute();
         watchEffect(() => {
-            getProfileById()
-            getProfileVaults()
-        })
+            getProfileById();
+            getProfileVaults();
+            getProfileKeeps();
+        });
         async function getProfileById() {
             try {
                 // const profileId = route.params.profileId
                 // logger.log(profileId)
-                await profilesService.getProfileById(route.params.profileId)
-            } catch (error) {
-                logger.error(error)
-                Pop.error(error.message)
+                await profilesService.getProfileById(route.params.profileId);
+            }
+            catch (error) {
+                logger.error(error);
+                Pop.error(error.message);
+            }
+        }
+        async function getProfileVaults() {
+            try {
+                const profileId = route.params.profileId;
+                await vaultsService.getProfileVaults(profileId);
+            }
+            catch (error) {
+                logger.log(error);
+                Pop.error(error.message);
             }
         }
 
-        async function getProfileVaults() {
+        async function getProfileKeeps() {
             try {
                 const profileId = route.params.profileId
-                await vaultsService.getProfileVaults(profileId)
+                await keepsService.getProfileKeeps(profileId)
             } catch (error) {
                 logger.log(error)
                 Pop.error(error.message)
             }
         }
-
         return {
-            profile: computed(() => AppState.profile)
-        }
-    }
+            profile: computed(() => AppState.profile),
+            vaults: computed(() => AppState.vaults),
+            keeps: computed(() => AppState.keeps)
+        };
+    },
+    components: { VaultCard, KeepCard }
 }
 </script>
 
@@ -84,5 +119,17 @@ export default {
     width: 107px;
     // border: 2px solid black;
     // box-shadow: 0px 2px 0px black;
+}
+
+$gap: .5em;
+
+.bricks {
+    columns: 300px;
+    column-gap: $gap;
+
+    &>div {
+        margin-top: $gap;
+        display: inline-block;
+    }
 }
 </style>

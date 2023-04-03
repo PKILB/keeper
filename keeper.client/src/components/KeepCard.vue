@@ -1,21 +1,41 @@
 <template>
     <div @click="setActiveKeep()" class="container" data-bs-toggle="modal" data-bs-target="#keepDetails">
-        <div class="card bg-white rounded elevation-1">
+        <div class="card rounded elevation-1">
+            <img class="img-fluid rounded" :src="keep.img" :alt="keep.name">
+            <div class="card-img-overlay">
+                <div class="row">
+                    <div class="col-12" v-if="account.id == keep?.creator.id">
+                        <i @click="deleteKeep(keep.id)"
+                            class="d-flex justify-content-end selectable fs-3 text-danger mdi mdi-alpha-x-circle"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <h4 class="p-2 text-light text-style mt-5">{{ keep?.name }}</h4>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex justify-content-end ">
+                            <router-link class="selectable"
+                                :to="{ name: 'Profile', params: { profileId: keep.creatorId } }">
+                                <img class="profile-img" :src="keep?.creator?.picture" alt="" :title="keep?.creator?.name">
+                            </router-link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="card bg-white rounded elevation-1">
             <img class="img-fluid rounded-top" :src="keep.img" alt="">
             <div class="card-img-overlay d-flex row align-content-between">
                 <div class="col-12 d-flex justify-content-end" v-if="account.id == keep?.creator.id">
                     <i @click="deleteKeep(keep.id)" class=" selectable fs-3 text-danger mdi mdi-alpha-x-circle"></i>
                 </div>
                 <div class="col-12 d-flex justify-content-between">
-                    <h4 class="p-2 text-light text-style mt-5">{{ keep?.name }}</h4>
-                    <div class=" p-3 justify-content-end ">
-                        <router-link class="selectable" :to="{ name: 'Profile', params: { profileId: keep.creatorId } }">
-                            <img class="profile-img" :src="keep?.creator?.picture" alt="" :title="keep?.creator?.name">
-                        </router-link>
-                    </div>
+                   
+                    
                 </div>
             </div>
-        </div>
+        </div> -->
 
     </div>
 </template>
@@ -58,8 +78,8 @@ export default {
 
 <style lang="scss" scoped>
 .profile-img {
-    height: 10vh;
-    width: 10vh;
+    height: 60px;
+    width: 60px;
     border-radius: 50%;
 }
 

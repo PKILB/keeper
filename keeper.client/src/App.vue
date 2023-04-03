@@ -11,14 +11,19 @@
   <CreateKeepModal id="createKeepModal">
     <KeepForm />
   </CreateKeepModal>
+  <CreateVaultModal id="createVaultModal">
+    <VaultForm />
+  </CreateVaultModal>
 </template>
 
 <script>
 import { computed } from 'vue'
 import { AppState } from './AppState'
 import CreateKeepModal from './components/CreateKeepModal.vue'
+import CreateVaultModal from './components/CreateVaultModal.vue'
 import KeepForm from './components/KeepForm.vue'
 import Navbar from './components/Navbar.vue'
+import VaultForm from './components/VaultForm.vue'
 
 export default {
   setup() {
@@ -26,7 +31,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar, CreateKeepModal, KeepForm }
+  components: { Navbar, CreateKeepModal, KeepForm, CreateVaultModal, VaultForm }
 }
 </script>
 <style lang="scss">

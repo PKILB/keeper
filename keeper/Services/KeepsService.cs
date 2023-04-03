@@ -29,6 +29,11 @@ namespace keeper.Services
         {
             Keep keep = _repo.GetOneKeep(id);
             if (keep == null) throw new Exception($"There is no keep at that id; {id}");
+            {
+                if (keep.CreatorId != userId)
+            keep.Views++;
+            _repo.UpdateKeep(keep);
+            }
             return keep;
         }
 

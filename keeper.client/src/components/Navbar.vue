@@ -18,6 +18,8 @@
           <ul class="dropdown-menu">
             <li @click="createKeep" data-bs-toggle="modal" data-bs-target="#createKeepModal" class="dropdown-item">new
               keep</li>
+            <li @click="createVault" data-bs-toggle="modal" data-bs-target="#createVaultModal" class="dropdown-item">new
+              vault</li>
           </ul>
         </div>
         <!-- <div class="text-center">
