@@ -1,3 +1,4 @@
+import { Profile } from "./Account.js"
 
 
 export class Vault {
@@ -8,5 +9,6 @@ export class Vault {
         this.description = data.description
         this.img = data.img
         this.isPrivate = data.isPrivate
+        this.creator = new Profile(data.creator)
     }
 }

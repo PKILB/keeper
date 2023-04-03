@@ -17,12 +17,21 @@
                         aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
-                    <label for="description" class="form-label">Vault Description...</label>
+                    <label for="description" class="form-label">Vault Description</label>
                     <input v-model="editable.description" required type="textarea" class="form-control" id="description"
                         aria-describedby="emailHelp">
                 </div>
             </div>
             <div class="modal-footer">
+                <div>
+                    <p>Private vaults can only be viewed by you</p>
+                    <div class="form-check">
+                        <input class="form-check-label" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Make Vault
+                        </label>
+                    </div>
+                </div>
                 <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
                     Create
                 </button>
