@@ -96,13 +96,13 @@ export default {
                     const vaultId = editable.value
                     logger.log(keepId)
                     logger.log(vaultId)
-                    const keptKeep = {
+                    const keepsInVault = {
                         keepId,
                         ...vaultId
                     }
                     // const keptKeep = this.keep.id + formData
-                    await vaultKeepsService.createVaultKeep(keptKeep)
-                    if (keptKeep.id) {
+                    await vaultKeepsService.createVaultKeep(keepsInVault)
+                    if (keepsInVault.keptKeepId) {
                         router.push({ name: 'Vault', params: { vaultId: vault.id } })
                     }
                 } catch (error) {

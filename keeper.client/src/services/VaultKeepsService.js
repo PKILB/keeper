@@ -5,10 +5,10 @@ import { api } from "./AxiosService.js"
 
 
 class VaultKeepService {
-    async createVaultKeep(keptKeep) {
-    const res = await api.post('api/vaultKeeps', keptKeep )
+    async createVaultKeep(keepsInVault) {
+    const res = await api.post('api/vaultKeeps', keepsInVault )
     AppState.vaultKeep.push(res.data)
-    logger.log(keptKeep)
+    logger.log(keepsInVault)
     }
 
 }

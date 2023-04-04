@@ -4,12 +4,12 @@
             <div class="card rounded elevation-1">
                 <img class="img-fluid rounded" :src="vault.img" :alt="vault.name">
                 <div class="card-img-overlay">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="col-12" v-if="account.id == vault?.creator?.id">
-                                <i @click="deleteVault(vault.id)"
-                                    class="d-flex justify-content-end selectable fs-3 text-danger mdi mdi-alpha-x-circle"></i>
-                            </div>
+                    <div class="row ">
+                        <div class="col-12" v-if="account.id == vault?.creator?.id">
+                            <i @click="deleteVault(vault.id)"
+                                class="d-flex justify-content-end selectable fs-3 text-danger mdi mdi-alpha-x-circle"></i>
+                            <!-- <div class="col-12 d-flex justify-content-between">
+                            </div> -->
                         </div>
                     </div>
                     <div class="row d-flex">
