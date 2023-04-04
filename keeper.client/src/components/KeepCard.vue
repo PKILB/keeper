@@ -1,5 +1,5 @@
 <template>
-    <div @click="setActiveKeep(keep.id)" class="container" data-bs-toggle="modal" data-bs-target="#keepDetails">
+    <div @click="getKeepById(keep.id)" class="container" data-bs-toggle="modal" data-bs-target="#keepDetails">
         <div class="card rounded elevation-1">
             <img class="img-fluid rounded" :src="keep.img" :alt="keep.name">
             <div class="card-img-overlay">
@@ -56,20 +56,25 @@ export default {
             keeps: computed(() => AppState.keep),
             account: computed(() => AppState.account),
 
-            setActiveKeep(keepId) {
-                keepsService.setActiveKeep(keepId)
-                if (this.keeps.creatorId != this.account.id)
-                    this.keeps.views++
-            },
 
-            // async getKeepById(keepId) {
+            // async setActiveKeep(keepId) {
             //     try {
-            //         const keepId 
+            //         await keepsService.setActiveKeep(keepId)
+            //         // if (this.keeps.creatorId != this.account.id)
+            //         //     this.keeps.views++
             //     } catch (error) {
-            //         logger.error(error)
-            //         Pop.error(error.message)
+            //         lo
             //     }
             // },
+
+            async getKeepById(keepId) {
+                try {
+                    await keepsService.getKeepById(keepId)
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(error.message)
+                }
+            },
 
             async deleteKeep(keepId) {
                 try {

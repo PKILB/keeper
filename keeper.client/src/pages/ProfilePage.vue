@@ -1,20 +1,24 @@
 <template>
     <div class="container-fluid bg-grey">
         <div class="row mt-3">
-            <div class="col-12"></div>
-            <div class="col-12 d-flex justify-content-center">
-                <img class="profile-img rounded-circle" :src="profile.picture" :alt="profile.name">
+            <div class="col-12 d-flex justify-content-center mb-2">
+                <img class="img-size rounded" :src="profile.coverImg" alt="">
             </div>
-            <div class="col-12 d-flex justify-content-center">
-                <h2>
-                    {{ profile.name }}
-                </h2>
+            <div class="moving-up">
+                <div class="col-12 d-flex justify-content-center">
+                    <img class="profile-img rounded-circle" :src="profile.picture" :alt="profile.name">
+                </div>
+                <div class="col-12 d-flex justify-content-center">
+                    <h2>
+                        {{ profile.name }}
+                    </h2>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="d-flex justify-content-center">
-                <p>
-                    # of Vaults | # of Keeps
+                <p class="moving-up">
+                    {{ vaults.length }} Vaults | {{ keeps.length }} Keeps
                 </p>
             </div>
         </div>
@@ -116,9 +120,18 @@ export default {
 .profile-img {
     border-radius: 50%;
     height: 90px;
-    width: 107px;
+    width: 90px;
     // border: 2px solid black;
     // box-shadow: 0px 2px 0px black;
+}
+
+.moving-up {
+    transform: translateY(-9vh);
+}
+
+.img-size {
+    height: 245px;
+    width: 600px;
 }
 
 $gap: .5em;

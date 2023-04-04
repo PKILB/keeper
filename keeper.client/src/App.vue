@@ -2,7 +2,7 @@
   <header>
     <Navbar />
   </header>
-  <main>
+  <main class="bg-grey">
     <router-view />
   </main>
   <footer class="bg-dark text-light">
