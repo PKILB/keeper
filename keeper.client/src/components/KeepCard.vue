@@ -70,6 +70,8 @@ export default {
             async getKeepById(keepId) {
                 try {
                     await keepsService.getKeepById(keepId)
+
+                    this.keeps.views++
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error.message)

@@ -32,7 +32,7 @@
 <script>
 import { AppState } from '../AppState.js';
 import { computed, onMounted, watchEffect } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { vaultsService } from '../services/VaultsService.js';
@@ -41,6 +41,7 @@ import { vaultsService } from '../services/VaultsService.js';
 export default {
     setup() {
         const route = useRoute()
+        const router = useRouter()
 
         async function getVaultById() {
             try {
@@ -49,6 +50,7 @@ export default {
             } catch (error) {
                 logger.error(error)
                 Pop.error(error.message)
+                router.push({ name: 'Home' })
             }
         }
 

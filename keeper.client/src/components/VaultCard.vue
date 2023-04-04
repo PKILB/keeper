@@ -15,12 +15,18 @@
                     <div class="row d-flex">
                         <div class="col-12">
                             <h6 class="text-light text-style">{{ vault.name }}</h6>
+                            <div v-if="vault.isPrivate == true">
+                                <i class="mdi mdi-lock"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </router-link>
+    <!-- <router-link v-else>
+
+    </router-link> -->
 </template>
 
 

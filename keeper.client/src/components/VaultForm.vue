@@ -26,9 +26,10 @@
                 <div>
                     <p>Private vaults can only be viewed by you</p>
                     <div class="form-check">
-                        <input class="form-check-label" type="checkbox" value="" id="flexCheckDefault">
+                        <input v-model="editable.isPrivate" class="form-check-label" type="checkbox" value=""
+                            id="isPrivate">
                         <label class="form-check-label" for="flexCheckDefault">
-                            Make Vault
+                            Make Vault Private
                         </label>
                     </div>
                 </div>
