@@ -32,4 +32,9 @@ public class AccountService
     original.CoverImg = editData.CoverImg.Length > 0 ? editData.CoverImg : original.CoverImg;
     return _repo.Edit(original);
   }
+
+    // internal Account EditAccount(string id, Account editData)
+    // {
+    //     throw new NotImplementedException();
+    // }
 }
