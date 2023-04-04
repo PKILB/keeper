@@ -7,7 +7,10 @@ CREATE TABLE IF NOT EXISTS accounts(
   picture varchar(255) COMMENT 'User Picture'
 ) default charset utf8 COMMENT '';
 
-ALTER TABLE accounts ADD coverImg VARCHAR(500);
+ALTER TABLE accounts ADD coverImg VARCHAR(500) NOT NULL DEFAULT 'https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Zmxvd2VyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60';
+
+ALTER TABLE accounts
+DROP COLUMN coverImg;
 
 
 CREATE TABLE keeps(

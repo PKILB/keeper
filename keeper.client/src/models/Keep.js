@@ -9,6 +9,7 @@ export class Keep {
         this.description = data.description
         this.img = data.img
         this.views = data.views
+        this.kept = data.kept
     }
 }
 

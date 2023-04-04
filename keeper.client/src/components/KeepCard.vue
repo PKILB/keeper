@@ -1,5 +1,5 @@
 <template>
-    <div @click="setActiveKeep()" class="container" data-bs-toggle="modal" data-bs-target="#keepDetails">
+    <div @click="setActiveKeep(keep.id)" class="container" data-bs-toggle="modal" data-bs-target="#keepDetails">
         <div class="card rounded elevation-1">
             <img class="img-fluid rounded" :src="keep.img" :alt="keep.name">
             <div class="card-img-overlay">
@@ -9,7 +9,7 @@
                             class="d-flex justify-content-end selectable fs-3 text-danger mdi mdi-alpha-x-circle"></i>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row d-flex align-content-end">
                     <div class="col-6">
                         <h4 class="p-2 text-light text-style mt-5">{{ keep?.name }}</h4>
                     </div>
@@ -56,9 +56,20 @@ export default {
             keeps: computed(() => AppState.keep),
             account: computed(() => AppState.account),
 
-            setActiveKeep() {
-                keepsService.setActiveKeep(props.keep)
+            setActiveKeep(keepId) {
+                keepsService.setActiveKeep(keepId)
+                if (this.keeps.creatorId != this.account.id)
+                    this.keeps.views++
             },
+
+            // async getKeepById(keepId) {
+            //     try {
+            //         const keepId 
+            //     } catch (error) {
+            //         logger.error(error)
+            //         Pop.error(error.message)
+            //     }
+            // },
 
             async deleteKeep(keepId) {
                 try {

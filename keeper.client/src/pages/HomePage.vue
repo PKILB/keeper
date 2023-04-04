@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { onMounted, computed } from 'vue';
+import { onMounted, computed, watchEffect } from 'vue';
 import { AppState } from '../AppState.js';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
@@ -27,7 +27,7 @@ import KeepCard from '../components/KeepCard.vue';
 
 export default {
   setup() {
-    onMounted(() => {
+    watchEffect(() => {
       getAllKeeps();
     });
     async function getAllKeeps() {
