@@ -12,8 +12,11 @@ namespace keeper.Services
 
         internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData, Account userInfo)
         {
+            Vault vault = _vaultsService.GetOneVault(vaultKeepData.VaultId, userInfo.Id);
+            if (vault.CreatorId != userInfo.Id) throw new Exception($"You do not have access to this vault.") ;
             VaultKeep vaultKeep = _repo.CreateVaultKeep(vaultKeepData);
             if (vaultKeep.CreatorId != userInfo.Id) throw new Exception("You cannot do that");
+            // if (vaultKeep.VaultId )
             return vaultKeep;
         }
 

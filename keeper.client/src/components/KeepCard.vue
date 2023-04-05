@@ -2,8 +2,26 @@
     <div @click="getKeepById(keep.id)" class="container" data-bs-toggle="modal" data-bs-target="#keepDetails">
         <div class="card rounded elevation-1">
             <img class="img-fluid rounded" :src="keep.img" :alt="keep.name">
-            <div class="card-img-overlay">
-                <div class="row">
+            <div class="card-img-overlay row">
+                <div class="col-12 d-flex flex-column justify-content-between">
+                    <div class="row">
+                        <div class="d-flex justify-content-end" v-if="account.id == keep?.creator.id">
+                            <i @click="deleteKeep(keep.id)" class=" selectable fs-3 text-danger mdi mdi-alpha-x-circle"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <h4 class="p-2 text-light text-style">{{ keep?.name }}</h4>
+                        </div>
+                        <div class="col-6 d-flex justify-content-end">
+                            <router-link class="selectable"
+                                :to="{ name: 'Profile', params: { profileId: keep.creatorId } }">
+                                <img class="profile-img" :src="keep?.creator?.picture" alt="" :title="keep?.creator?.name">
+                            </router-link>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="row">
                     <div class="col-12" v-if="account.id == keep?.creator.id">
                         <i @click="deleteKeep(keep.id)"
                             class="d-flex justify-content-end selectable fs-3 text-danger mdi mdi-alpha-x-circle"></i>
@@ -21,21 +39,10 @@
                             </router-link>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
-        <!-- <div class="card bg-white rounded elevation-1">
-            <img class="img-fluid rounded-top" :src="keep.img" alt="">
-            <div class="card-img-overlay d-flex row align-content-between">
-                <div class="col-12 d-flex justify-content-end" v-if="account.id == keep?.creator.id">
-                    <i @click="deleteKeep(keep.id)" class=" selectable fs-3 text-danger mdi mdi-alpha-x-circle"></i>
-                </div>
-                <div class="col-12 d-flex justify-content-between">
-                   
-                    
-                </div>
-            </div>
-        </div> -->
+
 
     </div>
 </template>
@@ -69,9 +76,10 @@ export default {
 
             async getKeepById(keepId) {
                 try {
+                    // debugger
                     await keepsService.getKeepById(keepId)
 
-                    this.keeps.views++
+                    // this.keeps.views++
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error.message)

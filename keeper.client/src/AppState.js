@@ -21,6 +21,9 @@ export const AppState = reactive({
   /** @type {import('./models/KeptKeep.js').KeptKeep[]} */
   keptKeeps: [],
 
+  /** @type {import('./models/KeptKeep.js').KeptKeep | null} */
+  keptKeep: null,
+
   /** @type {import('./models/Keep.js').Keep | null} */
   keep: {},
   

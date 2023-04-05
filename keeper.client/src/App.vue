@@ -5,8 +5,8 @@
   <main class="bg-grey">
     <router-view />
   </main>
-  <footer class="bg-dark text-light">
-    Made with 💖 by CodeWorks
+  <footer class="bg-grey text-dark">
+    Made with PURE HATRED by CodeWorks
   </footer>
   <CreateKeepModal id="createKeepModal">
     <KeepForm />
@@ -46,5 +46,6 @@ footer {
   display: grid;
   place-content: center;
   height: 32px;
+  border-top: 4px solid rgba(0, 0, 0, 0.192);
 }
 </style>

@@ -50,11 +50,13 @@ namespace keeper.Services
             return $"You have successfully deleted the {vault.Name} vault!";
         }
 
-        internal List<Vault> GetProfileVaults(string profileId)
+        internal List<Vault> GetProfileVaults(string profileId, Account userInfo)
         {
             Profile profile = _profilesService.GetProfile(profileId);
-            List<Vault> vaults = _repo.GetProfileVaults(profileId);
-            return vaults;
+            List<Vault> allVaults = _repo.GetProfileVaults(profileId);
+            // NOT THIS ONE if (vaults.CreatorId != userInfo.Id && vaults.isPrivate == true) throw new Exception("You can't see this");
+            List<Vault> filteredVaults = allVaults.FindAll(v => v.CreatorId == userInfo.Id || v.isPrivate == false); //FIXME what if userinfo is null?
+            return allVaults;
         }
 
         internal List<Vault> GetMyVaults(string accountId)

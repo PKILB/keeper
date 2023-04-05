@@ -26,9 +26,14 @@
             <div class="col-9 m-auto">
                 <div class="row">
                     <h2>Vaults</h2>
+
                     <div v-for="v in vaults" class="col-4">
-                        <VaultCard class="" :vault="v" />
+                        <VaultCard :vault="v" />
                     </div>
+
+                    <!-- <div v-else v-for="v in vaults" class="col-4">
+                        <VaultCard :vault="v" />
+                    </div> -->
                 </div>
             </div>
             <!-- <div class="row d-flex">
@@ -108,7 +113,9 @@ export default {
         return {
             profile: computed(() => AppState.profile),
             vaults: computed(() => AppState.vaults),
-            keeps: computed(() => AppState.keeps)
+            vault: computed(() => AppState.activeVault),
+            keeps: computed(() => AppState.keeps),
+            account: computed(() => AppState.account)
         };
     },
     components: { VaultCard, KeepCard }
