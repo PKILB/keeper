@@ -45,18 +45,18 @@ namespace keeper.Services
         internal string RemoveVault(int id, Account userInfo)
         {
             Vault vault = this.GetOneVault(id, userInfo.Id);
-            bool result = _repo.removeVault(id);
             if (vault.CreatorId != userInfo.Id) throw new Exception("You don't own this vault!!");
+            bool result = _repo.removeVault(id);
             return $"You have successfully deleted the {vault.Name} vault!";
         }
 
-        internal List<Vault> GetProfileVaults(string profileId, Account userInfo)
+        internal List<Vault> GetProfileVaults(string profileId, string userId)
         {
             Profile profile = _profilesService.GetProfile(profileId);
             List<Vault> allVaults = _repo.GetProfileVaults(profileId);
             // NOT THIS ONE if (vaults.CreatorId != userInfo.Id && vaults.isPrivate == true) throw new Exception("You can't see this");
-            List<Vault> filteredVaults = allVaults.FindAll(v => v.CreatorId == userInfo.Id || v.isPrivate == false); //FIXME what if userinfo is null?
-            return allVaults;
+            List<Vault> filteredVaults = allVaults.FindAll(v => v.CreatorId == userId || v.isPrivate == false); //FIXME what if userinfo is null?
+            return filteredVaults;
         }
 
         internal List<Vault> GetMyVaults(string accountId)
