@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid bg-grey pt-2">
+    <div class="container-fluid pt-2">
         <div class="row">
             <div class="col-5 m-auto">
                 <div class="d-flex justify-content-center">
@@ -19,10 +19,10 @@
             <div class="col-12 m-auto d-flex justify-content-center">
                 <div class="d-flex">
                     <h6 class="d-flex justify-content-center pe-2">{{ keptKeeps?.length }} Keeps</h6>
-                    <select v-model="editable.vaultKeepId" class="pe-2">
+                    <select v-if="account.id == vault?.creatorId" v-model="editable.vaultKeepId" class="pe-2">
                         <option v-for="k in keptKeeps" :value="k.vaultKeepId">{{ k.name }}</option>
                     </select>
-                    <button v-if="account.id == vault?.creatorId" class="btn btn-danger text-light rounded ps-2"
+                    <button v-if="account.id == vault?.creatorId" class="btn btn-info text-dark rounded ps-2"
                         @click="deleteVaultKeep(keptKeep?.vaultKeepId)">
                         Remove
                     </button>
@@ -78,6 +78,8 @@ export default {
                 logger.error(error);
                 Pop.error(error.message);
                 router.push({ name: "Home" });
+                // if (account.id != vault?.creatorId && vault?.isPrivate == true) {
+                // }
             }
         }
         async function getKeepsInVault() {
@@ -130,8 +132,9 @@ export default {
 
 <style lang="scss" scoped>
 .vault-img-height {
-    background-size: 50px;
-    // width: 400px;
+    // background-size: ;
+    // background-size: 0px;
+    width: 400px;
 }
 
 .text-style {

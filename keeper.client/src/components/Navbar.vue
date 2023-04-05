@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-grey px-3 border-style">
+  <nav class="navbar navbar-expand-lg navbar-dark px-3 border-style">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center ps-3">
         <button class="btn bg-info text-dark fw-bold">Home</button>
@@ -12,7 +12,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
         <div v-if="account.id" class="dropdown">
-          <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <button class="btn dropdown-toggle text-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Create
           </button>
           <ul class="dropdown-menu">

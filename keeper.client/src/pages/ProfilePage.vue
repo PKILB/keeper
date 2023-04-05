@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid bg-grey">
+    <div class="container-fluid">
         <div class="row mt-3">
             <div class="col-12 d-flex justify-content-center mb-2">
                 <img class="img-size rounded" :src="profile.coverImg" alt="">

@@ -1,8 +1,8 @@
 <template>
-  <header>
+  <header class="bg-dark">
     <Navbar />
   </header>
-  <main class="bg-grey">
+  <main class="bg-custom-grey">
     <router-view />
   </main>
   <footer class="bg-grey text-dark">
