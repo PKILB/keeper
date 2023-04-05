@@ -77,9 +77,9 @@ export default {
             catch (error) {
                 logger.error(error);
                 Pop.error(error.message);
-                router.push({ name: "Home" });
-                // if (account.id != vault?.creatorId && vault?.isPrivate == true) {
+                // if (account.id != vault?.creatorId) {
                 // }
+                router.push({ name: "Home" });
             }
         }
         async function getKeepsInVault() {
