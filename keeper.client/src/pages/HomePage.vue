@@ -59,4 +59,16 @@ $gap: .5em;
     display: inline-block;
   }
 }
+
+@media screen and (max-width: 667px) {
+  .bricks {
+    columns: 150px;
+    column-gap: $gap;
+
+    &>div {
+      margin-top: $gap;
+      display: inline-block;
+    }
+  }
+}
 </style>

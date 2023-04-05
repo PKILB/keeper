@@ -3,20 +3,22 @@
         <div class="container my-1">
             <div class="card rounded elevation-1">
                 <img class="img-fluid rounded" :src="vault.img" :alt="vault.name">
-                <div class="card-img-overlay">
-                    <div class="row ">
-                        <div class="col-12" v-if="account.id == vault?.creator?.id">
-                            <i @click="deleteVault(vault.id)"
-                                class="d-flex justify-content-end selectable fs-3 text-danger mdi mdi-alpha-x-circle"></i>
-                            <!-- <div class="col-12 d-flex justify-content-between">
-                            </div> -->
+                <div class="card-img-overlay row">
+                    <div class="col-12 d-flex flex-column justify-content-between">
+                        <div class="row ">
+                            <div class="col-12" v-if="account.id == vault?.creator?.id">
+                                <i @click="deleteVault(vault.id)"
+                                    class="d-flex justify-content-end selectable fs-3 text-danger mdi mdi-alpha-x-circle"></i>
+                                <!-- <div class="col-12 d-flex justify-content-between">
+                                </div> -->
+                            </div>
                         </div>
-                    </div>
-                    <div class="row d-flex">
-                        <div class="col-12">
-                            <h6 class="text-light text-style">{{ vault.name }}</h6>
-                            <div v-if="vault.isPrivate == true">
-                                <i class="mdi mdi-lock"></i>
+                        <div class="row d-flex">
+                            <div class="col-12 d-flex">
+                                <h4 class="text-light text-style">{{ vault.name }}</h4>
+                                <div v-if="vault.isPrivate == true">
+                                    <i class="mdi mdi-lock"></i>
+                                </div>
                             </div>
                         </div>
                     </div>

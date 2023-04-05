@@ -1,6 +1,6 @@
 <template>
     <div class="modal fade" id="modalId" tabindex="-1" aria-labelledby="modalTitleId" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
             <div class="modal-content">
                 <slot></slot>
             </div>
@@ -20,8 +20,12 @@ export default {
 
 
 <style lang="scss" scoped>
-.scroll-y {
-    overflow-y: scroll;
+.modal-dialog {
+    overflow-y: initial;
+}
+
+.modal-content {
+    overflow-y: auto;
     height: calc(100vh - 122px);
 }
 </style>

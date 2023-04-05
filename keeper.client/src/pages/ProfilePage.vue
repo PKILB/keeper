@@ -9,7 +9,7 @@
                     <img class="profile-img rounded-circle" :src="profile.picture" :alt="profile.name">
                 </div>
                 <div class="col-12 d-flex justify-content-center">
-                    <h2>
+                    <h2 class="text-light">
                         {{ profile.name }}
                     </h2>
                 </div>
@@ -23,11 +23,11 @@
             </div>
         </div>
         <div class="row mb-2">
-            <div class="col-9 m-auto">
+            <div class="col-md-9 m-auto">
                 <div class="row">
                     <h2>Vaults</h2>
 
-                    <div v-for="v in vaults" class="col-4">
+                    <div v-for="v in vaults" class="col-md-4">
                         <VaultCard :vault="v" />
                     </div>
 
@@ -40,7 +40,7 @@
                 </div> -->
         </div>
         <div class="row">
-            <div class="col-9 m-auto">
+            <div class="col-md-9 m-auto">
                 <div class="row">
                     <h2>Keeps</h2>
                     <section class="bricks">
@@ -139,6 +139,8 @@ export default {
 .img-size {
     height: 245px;
     width: 600px;
+    // background-size: contain;
+    background-size: cover;
 }
 
 $gap: .5em;
@@ -150,6 +152,18 @@ $gap: .5em;
     &>div {
         margin-top: $gap;
         display: inline-block;
+    }
+}
+
+@media screen and (max-width: 667px) {
+    .bricks {
+        columns: 200px;
+        column-gap: $gap;
+
+        &>div {
+            margin-top: $gap;
+            display: inline-block;
+        }
     }
 }
 </style>

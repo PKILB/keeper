@@ -18,11 +18,11 @@
                     <h2 class="d-flex align-content-center justify-content-center">{{ keep.name }}</h2>
                     <p class="d-flex justify-content-center align-content-center px-5">{{ keep.description }}</p>
                 </div>
-                <div class="row">
+                <div class="row pb-3">
                     <div class="col-12">
                         <div class="row">
                             <div class="col-4 d-flex justify-content-center">
-                                <select v-model="editable.vaultId">
+                                <select v-if="account.id" v-model="editable.vaultId">
                                     <option disabled value="Please Select One">Please select one</option>
                                     <option v-for="m in myVaults" :value="m.id"> {{ m.name }} </option>
                                 </select>
@@ -36,7 +36,11 @@
                             </div>
                             <div class="col-4 d-flex justify-content-center">
                                 <div class="d-flex">
-                                    <img class="profile-img" :src="keep?.creator?.picture" :alt="keep?.creator?.name">
+                                    <img class="profile-img" :src="keep?.creator?.picture" :alt="keep?.creator?.name"
+                                        :title="keep.creator?.name">
+                                    <!-- <router-link class="selectable"
+                                        :to="{ name: 'Profile', params: { profileId: keep.creatorId } }">
+                                    </router-link> -->
 
                                     <p class="d-flex fw-bold text-style p-0">{{ keep?.creator?.name
                                     }}</p>
