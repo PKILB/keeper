@@ -23,7 +23,7 @@
                         <option v-for="k in keptKeeps" :value="k.vaultKeepId">{{ k.name }}</option>
                     </select>
                     <button v-if="account.id == vault?.creatorId" class="btn btn-danger text-light rounded ps-2"
-                        @click="deleteVaultKeep(vaultKeepId)">
+                        @click="deleteVaultKeep(keptKeep?.vaultKeepId)">
                         Remove
                     </button>
                 </div>
@@ -104,14 +104,18 @@ export default {
             profile: computed(() => AppState.profile),
             account: computed(() => AppState.account),
 
-            async deleteVaultKeep() {
+            async deleteVaultKeep(vaultKeepId) {
                 // debugger
                 try {
-                    const vaultKeepId = editable.value
+                    // const vaultKeepId = AppState.keptKeep?.vaultKeepId
+                    vaultKeepId = editable.value
+                    // vaultKeepId
 
                     if (await Pop.confirm('Are you sure you want to remove this keep from the vault?')) {
                         await vaultKeepsService.deleteVaultKeep(vaultKeepId)
                     }
+
+                    // this.keptKeeps.length--
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error.message)
@@ -126,8 +130,8 @@ export default {
 
 <style lang="scss" scoped>
 .vault-img-height {
-    height: 200px;
-    width: 400px;
+    background-size: 50px;
+    // width: 400px;
 }
 
 .text-style {

@@ -25,7 +25,7 @@ namespace keeper.Services
             VaultKeep vaultKeep = _repo.GetOne(id);
             if (vaultKeep == null) throw new Exception($"there is no vaultkeep at that id; {id}");
             if (vaultKeep.CreatorId != userId) throw new UnauthorizedAccessException("that is not for you to delete");
-            _repo.deleteVaultKeep(id);
+            bool result = _repo.deleteVaultKeep(id);
             return $"You have successfully deleted the vaultkeep!";
         }
 

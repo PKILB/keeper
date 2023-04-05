@@ -22,13 +22,14 @@ namespace keeper.Repositories
             return vaultKeepData;
         }
 
-        internal void deleteVaultKeep(int id)
+        internal bool deleteVaultKeep(int id)
         {
             string sql = @"
             DELETE FROM vaultKeeps
             WHERE id = @id
             ";
-            _db.Execute(sql, new { id });
+            int rows = _db.Execute(sql, new { id });
+            return rows == 1;
         }
 
         internal List<KeptKeep> GetKeepsByVault(int vaultId)
